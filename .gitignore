@@ -42,7 +42,12 @@ node_modules/
 jspm_packages/
 
 # misc
-README.md
+.env
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 
 # TypeScript v1 declaration files
