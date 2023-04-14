@@ -8,7 +8,7 @@ const isUUID = require("./isUUID");
 const getDogsId = async (id) => {
   const response = await axios.get(`${URL_BASE}/breeds?key=${API_KEY}`);
   const dogId = response.data.find((dog) => {
-    dog.id == Number(id);
+    return dog.id == Number(id);
   });
 
   const validationUuid = isUUID(id);
