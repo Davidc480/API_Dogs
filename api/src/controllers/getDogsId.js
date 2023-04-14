@@ -1,9 +1,9 @@
 require("dotenv").config();
 const axios = require("axios");
-const formatDogData = require("./formatDogData");
+const formatDogData = require("../helpers/formatDogData");
 const { URL_BASE, API_KEY } = process.env;
 const { Dog } = require("../db.js");
-const isUUID = require("./isUUID");
+const isUUID = require("../helpers/isUUID");
 
 const getDogsId = async (id) => {
   const response = await axios.get(`${URL_BASE}/breeds?key=${API_KEY}`);

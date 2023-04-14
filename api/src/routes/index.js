@@ -33,4 +33,14 @@ router.get("/dogs/:id", async (req, res) => {
   }
 });
 
+router.get("/dogs/name", async (req, res) => {
+  try {
+    const { name } = req.query;
+    const dogsName = await getDogsName(name);
+    res.status(200).json(dogsName);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
 module.exports = router;
