@@ -1,3 +1,4 @@
+require("dotenv").config();
 const axios = require("axios");
 const { URL_BASE, API_KEY } = process.env;
 
@@ -14,3 +15,5 @@ const getDogs = async () => {
   );
   return dogs;
 };
+
+module.exports = getDogs;

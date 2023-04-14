@@ -13,9 +13,20 @@ router.get("/", (req, res) => {
   res.status(200).send("Server funcionando");
 });
 
-router.get("/dogs", (req, res) => {
+router.get("/dogs", async (req, res) => {
   try {
-    res.status(200).json(getDogs());
+    const dogs = await getDogs();
+    res.status(200).json(dogs);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+router.get("/dogs/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const dogsId = await getDogsId(id);
+    res.status(200).json(dogsId);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
