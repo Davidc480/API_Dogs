@@ -19,7 +19,7 @@ const getDogsId = async (id) => {
     const dogBdd = await Dog.findByPk(id);
     return dogBdd;
   } else {
-    return `El id ${id} no se encuentra`;
+    throw Error(`El id ${id} no se encuentra`);
   }
 };
 
