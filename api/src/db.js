@@ -39,8 +39,8 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un destructuring
 const { Dog, Temperament } = sequelize.models;
 
-Dog.belongsToMany(Temperament, { through: "dogTemperament" });
-Temperament.belongsToMany(Dog, { through: "dogTemperament" });
+Dog.belongsToMany(Temperament, { through: "DogTemperament" });
+Temperament.belongsToMany(Dog, { through: "DogTemperament" });
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);

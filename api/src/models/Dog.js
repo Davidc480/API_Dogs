@@ -13,15 +13,11 @@ module.exports = (sequelize) => {
         allowNull: false,
         primaryKey: true,
       },
-      image: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      height: {
+      life_span: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -29,8 +25,12 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      life_span: {
-        type: DataTypes.INTEGER,
+      height: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      image: {
+        type: DataTypes.STRING,
         allowNull: false,
       },
     },
