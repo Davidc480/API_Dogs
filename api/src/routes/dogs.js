@@ -8,16 +8,12 @@ const validateDogCreationData = require("../middlewares/validateDogCreationData"
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
-const router = Router();
+const dogs = Router();
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
-router.get("/", (req, res) => {
-  res.status(200).send("Server funcionando");
-});
-
-router.get("/dogs", async (req, res) => {
+dogs.get("/", async (req, res) => {
   try {
     const dogs = await getDogs();
     res.status(200).json(dogs);
@@ -26,7 +22,7 @@ router.get("/dogs", async (req, res) => {
   }
 });
 
-router.get("/dogs/name", async (req, res) => {
+dogs.get("/name", async (req, res) => {
   try {
     const { name } = req.query;
     const dogsName = await getDogsName(name);
@@ -36,7 +32,7 @@ router.get("/dogs/name", async (req, res) => {
   }
 });
 
-router.get("/dogs/:id", async (req, res) => {
+dogs.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const dogsId = await getDogsId(id);
@@ -46,7 +42,7 @@ router.get("/dogs/:id", async (req, res) => {
   }
 });
 
-router.post("/dogs", async (req, res) => {
+dogs.post("/", async (req, res) => {
   try {
     const { name, life_span, temperament, weight, height, image } = req.body;
     validateDogCreationData(
@@ -71,4 +67,4 @@ router.post("/dogs", async (req, res) => {
   }
 });
 
-module.exports = router;
+module.exports = dogs;
