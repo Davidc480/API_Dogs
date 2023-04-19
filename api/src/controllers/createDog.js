@@ -11,7 +11,7 @@ const createDog = async (
   image
 ) => {
   const nameFormat = dogNameFormat(name);
-  if (validateExistenceBdd(nameFormat)) {
+  if (validateExistenceBdd(nameFormat, Dog)) {
     const dog = await Dog.create({
       name,
       life_span,
