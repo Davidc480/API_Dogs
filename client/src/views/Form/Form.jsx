@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import validateName from "../../helper/validationName";
 import validateData from "../../helper/ValidationData";
 import validateTemperaments from "../../helper/validationTemperaments";
-import { useDispatch, useSelector } from "react-redux";
+import Temperaments from "../../components/Temperaments/Temperaments"
+import { useDispatch } from "react-redux";
 import { getTemperaments } from "../../redux/actions";
 
 const Form = ()=> {
 
   const dispatch = useDispatch();
-  const temperaments = useSelector(state => state.temperaments)
 
   useEffect(()=>{
      dispatch(getTemperaments())
@@ -44,8 +44,6 @@ const Form = ()=> {
               : form.temperament.filter((temp) => temp !== value);
             setform((prevForm) => ({ ...prevForm, temperament: tempArr }));
             validateTemperaments({ ...form, temperament: tempArr }, errors, setErrors);
-
-            
           }
         else {
             
@@ -63,14 +61,8 @@ const Form = ()=> {
 
     return (
        <form onSubmit={submitHnadler}>
-            <div style={{ maxHeight: "200px", overflow: "auto" }}>
-                {temperaments.map((temperament) => (
-                <label>
-                <input type="checkbox" name="temperament" value={temperament} onChange={changeHandler} />
-                {temperament}
-                </label>
-                  ))}
-            </div>
+        <Temperaments changeHandler={changeHandler}/>
+
 
             <div>
                 <label>Name: </label>
