@@ -1,5 +1,8 @@
 import { useState } from "react";
 
+import validateName from "../../helper/validationName";
+import validateData from "../../helper/ValidationData";
+
 const Form = ()=> {
 
     const [form, setform] = useState({
@@ -9,26 +12,35 @@ const Form = ()=> {
         Height: { min: null , max: null },
     })
 
+    const [errors, setErrors] = useState({
+      name: "",
+      life: { min: null, max: null },
+      Weight: { min: null , max: null },
+      Height: { min: null , max: null },
+  })
+
     const changeHandler = (event) => {
         if (event.target.name === "name"){
             const property = event.target.name
             const value = event.target.value
             setform({...form, [property]: value})
+            validateName({...form, [property]: value}, errors, setErrors)
         }else {
             
             const { name, value } = event.target;
             const [measure, property] = name.split("_");
-            setform({
-                ...form, [measure]: {
-                    ...form[measure],
-                    [property]: value
-                }
-            });
+            setform({...form, [measure]: {...form[measure],[property]: value}
+            })
+            validateData({...form, [measure]: {...form[measure],[property]: value}}, errors, setErrors)
         }
       }
 
+    const submitHnadler = (event)=>{
+      event.preventDefault()
+    }
+
     return (
-       <form>
+       <form onSubmit={submitHnadler}>
             <div>
                 <label>Name: </label>
                 <input 
@@ -37,6 +49,7 @@ const Form = ()=> {
                 value={form.name}
                 onChange={changeHandler}
                  />
+                 {errors.name && <span>{errors.name}</span>}
             </div>
             <div>
                 <label>Life span: </label>
@@ -98,6 +111,7 @@ const Form = ()=> {
                 onChange={changeHandler} 
                  />
             </div>
+            <button type="submit">Enviar</button>
        </form>
     )
 }
