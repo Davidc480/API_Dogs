@@ -1,4 +1,4 @@
-const validate = (formState, errors, setErrors) => {
+const validateName = (formState, errors, setErrors) => {
   let isValid = true;
   const newErrors = { ...errors };
 
@@ -21,4 +21,4 @@ const validate = (formState, errors, setErrors) => {
   return isValid;
 };
 
-export default validate;
+export default validateName;

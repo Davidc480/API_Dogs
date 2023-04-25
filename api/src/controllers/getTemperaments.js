@@ -28,8 +28,15 @@ const getTemperaments = async () => {
   const name = addTemperaments.map((dog) => {
     return dog.name;
   });
-
-  return name;
+  if (addTemperaments.length === 0) {
+    const temperamensBdd = await Temperament.findAll();
+    const name = temperamensBdd.map((dog) => {
+      return dog.name;
+    });
+    return name;
+  } else {
+    return name;
+  }
 };
 
 module.exports = getTemperaments;

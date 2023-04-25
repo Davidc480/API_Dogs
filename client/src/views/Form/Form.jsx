@@ -1,15 +1,25 @@
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
 import validateName from "../../helper/validationName";
 import validateData from "../../helper/ValidationData";
+import validateTemperaments from "../../helper/validationTemperaments";
+import { useDispatch, useSelector } from "react-redux";
+import { getTemperaments } from "../../redux/actions";
 
 const Form = ()=> {
+
+  const dispatch = useDispatch();
+  const temperaments = useSelector(state => state.temperaments)
+
+  useEffect(()=>{
+     dispatch(getTemperaments())
+  },[dispatch])
 
     const [form, setform] = useState({
         name: "",
         life: { min: null, max: null },
         Weight: { min: null , max: null },
         Height: { min: null , max: null },
+        temperament: []
     })
 
     const [errors, setErrors] = useState({
@@ -17,6 +27,7 @@ const Form = ()=> {
       life: { min: null, max: null },
       Weight: { min: null , max: null },
       Height: { min: null , max: null },
+      temperament: []
   })
 
     const changeHandler = (event) => {
@@ -25,13 +36,24 @@ const Form = ()=> {
             const value = event.target.value
             setform({...form, [property]: value})
             validateName({...form, [property]: value}, errors, setErrors)
-        }else {
+          } else if (event.target.name === "temperament") {
+            const value = event.target.value;
+            const checked = event.target.checked;
+            const tempArr = checked
+              ? [...form.temperament, value]
+              : form.temperament.filter((temp) => temp !== value);
+            setform((prevForm) => ({ ...prevForm, temperament: tempArr }));
+            validateTemperaments({ ...form, temperament: tempArr }, errors, setErrors);
+
+            
+          }
+        else {
             
             const { name, value } = event.target;
             const [measure, property] = name.split("_");
             setform({...form, [measure]: {...form[measure],[property]: value}
             })
-            validateData({...form, [measure]: {...form[measure],[property]: value}}, errors, setErrors)
+            validateData({...form, [measure]: {...form[measure],[property]: value}}, errors, setErrors, measure, property)
         }
       }
 
@@ -41,6 +63,15 @@ const Form = ()=> {
 
     return (
        <form onSubmit={submitHnadler}>
+            <div style={{ maxHeight: "200px", overflow: "auto" }}>
+                {temperaments.map((temperament) => (
+                <label>
+                <input type="checkbox" name="temperament" value={temperament} onChange={changeHandler} />
+                {temperament}
+                </label>
+                  ))}
+            </div>
+
             <div>
                 <label>Name: </label>
                 <input 

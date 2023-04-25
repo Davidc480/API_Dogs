@@ -2,6 +2,7 @@ import axios from "axios";
 export const GET_DOGS = "GET_DOGS";
 export const GET_DOG = "GET_DOG";
 export const GET_DOGS_NAME = "GET_DOGS_NAME";
+export const GET_TEMPERAMENTS = "GET_TEMPERAMENTS";
 
 export const getDogs = () => {
   return async function (dispatch) {
@@ -26,5 +27,15 @@ export const getDogsName = (dogNames) => {
     );
     const dogs = dogsApi.data;
     dispatch({ type: GET_DOGS_NAME, payload: dogs });
+  };
+};
+
+export const getTemperaments = () => {
+  return async function (dispatch) {
+    const temperamentsBdd = await axios.get(
+      `http://localhost:3001/temperaments`
+    );
+    const temperaments = temperamentsBdd.data;
+    dispatch({ type: GET_TEMPERAMENTS, payload: temperaments });
   };
 };
