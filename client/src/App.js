@@ -12,11 +12,11 @@ function App() {
 
       <Route exact path="/" render={() => <Landing />} />
 
-      <Route path="/Home" render={() => <Home />} />
+      <Route path="/home" render={() => <Home />} />
 
       <Route path="/create" render={() => <Form />} />
 
-      <Route path="/Detail" render={() => <Detail />} />
+      <Route path="/detail/:id" render={() => <Detail />} />
     </div>
   );
 }

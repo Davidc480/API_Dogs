@@ -1,9 +1,11 @@
-// import { legacy_createStore, applyMiddleware, compose } from "redux";
-// import thunk from "redux-thunk";
-// import rootReducer from "./reducer";
+import { legacy_createStore, applyMiddleware } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+import rootReducer from "./reducer";
+import thunkMiddleware from "redux-thunk";
 
-// const composeAlt = window._REDUX_DEVTOOLS_EXTENSION_COMPOSE_ || compose;
+const store = legacy_createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(thunkMiddleware))
+);
 
-// const composeEnhancer = composeAlt(applyMiddleware(thunk));
-// const store = legacy_createStore(rootReducer, composeEnhancer);
-// export default store;
+export default store;
