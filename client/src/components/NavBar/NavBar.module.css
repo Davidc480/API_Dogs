@@ -1,0 +1,45 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 1rem;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.navbarLink {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333333;
+  text-decoration: none;
+  margin-left: 40 px;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 1rem;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.navbarLink {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #333333;
+  text-decoration: none;
+  margin-left: 40 px;
+}
+
+.navbarLink:hover {
+  color: #007bff;
+}
+
+.home,
+.createDog {
+  font-size: 1.6rem; 
+}
+
+.navbarLink:hover {
+  color: #007bff;
+}

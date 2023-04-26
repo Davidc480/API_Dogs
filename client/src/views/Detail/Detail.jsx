@@ -4,6 +4,7 @@ import { getDog } from "../../redux/actions";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux"
 import Card from "../../components/Card/Card";
+import styles from "./Detail.module.css"
 
 const Detail = ()=> {
 
@@ -16,7 +17,7 @@ const Detail = ()=> {
   },[dispatch, id])
 
   return (
-    <div>
+    <div className={styles.card}>
       <Card {...dog}/>
     </div>
   )

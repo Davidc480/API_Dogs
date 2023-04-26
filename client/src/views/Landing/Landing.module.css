@@ -1,0 +1,21 @@
+.background {
+    background-image: url("https://s1.best-wallpaper.net/wallpaper/m/1811/Two-dogs-Australian-shepherd-shake-a-paw_m.jpg");
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+  }
+
+  .btn {
+    display:flex;
+    justify-content: center;
+    background-color: #007bff;
+    margin-top: 50%;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transform: scale(50%);
+  }
+  

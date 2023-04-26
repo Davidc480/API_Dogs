@@ -1,0 +1,70 @@
+.component {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .component-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px 0;
+  }
+  
+  
+  label {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    padding: 3px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  label:hover {
+    background-color: #e0e0e0;
+  }
+  
+  input[type="checkbox"] {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #aaa;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: border-color 0.2s ease-in-out;
+  }
+  
+  input[type="checkbox"]:checked {
+    border-color: #00bcd4;
+    background-color: #00bcd4;
+  }
+  
+  input[type="checkbox"]:checked::before {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #fff;
+    margin: auto;
+  }
+  
+  input[type="checkbox"]:not(:checked) {
+    border-color: #333;
+  }
+  
+  input[type="checkbox"]:not(:checked) + span {
+    color: #333;
+  }
+  
+  input[type="checkbox"]:checked + span {
+    color: #00bcd4;
+  }
+  
+  input[type="checkbox"] + span {
+    font-size: 14px;
+    transition: color 0.2s ease-in-out;
+  }
+  

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getDogsName } from "../../redux/actions";
+import styles from "./SearchBar.module.css";
 
 export default function SearchBar() {
   const [searchValue, setSearchValue] = useState("");
@@ -15,14 +16,19 @@ export default function SearchBar() {
   };
 
   return (
-    <div>
-      <label htmlFor="inputDeBusqueda">Buscar un perro:</label>
+    <div className={styles.searchContainer}>
+      <label className={styles.searchLabel} htmlFor="inputDeBusqueda">
+        Buscar un perro:
+      </label>
       <input
+        className={styles.searchInput}
         type="search"
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
       />
-      <button onClick={handleSearch}>Buscar</button>
+      <button className={styles.searchButton} onClick={handleSearch}>
+        Buscar
+      </button>
     </div>
   );
 }

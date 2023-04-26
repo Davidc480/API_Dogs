@@ -14,15 +14,14 @@ const getDogs = async (name) => {
     return array;
   }, []);
 
-  if (dogs.length > 0) {
-    return dogs;
+  const dogBdd = await Dog.findAll({ where: { name: name } });
+
+  const result = [...dogs, ...dogBdd];
+
+  if (result.length > 0) {
+    return result;
   } else {
-    const dogBdd = await Dog.findOne({ where: { name: name } });
-    if (dogBdd) {
-      return dogBdd;
-    } else {
-      throw new Error(`El nombre ${name} no se encuentra`);
-    }
+    throw new Error(`El nombre ${name} no se encuentra`);
   }
 };
 

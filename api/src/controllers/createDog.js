@@ -1,6 +1,5 @@
 const { Dog, Temperament } = require("../db.js");
 const validateExistenceBdd = require("../helpers/validateExistenceBdd.js");
-const dogNameFormat = require("../helpers/formatDogData.js");
 
 const createDog = async (
   name,
@@ -10,8 +9,7 @@ const createDog = async (
   height,
   image
 ) => {
-  const nameFormat = dogNameFormat(name);
-  if (validateExistenceBdd(nameFormat, Dog)) {
+  if (!(await validateExistenceBdd(name, Dog))) {
     const dog = await Dog.create({
       name,
       life_span,
@@ -26,10 +24,9 @@ const createDog = async (
       });
       await dog.addTemperament([temperamentBdd]);
     }
-
-    return `El perro con nombre ${nameFormat} fue creado con exito`;
+    return `El perro con nombre ${name} fue creado con exito`;
   }
-  throw Error(`El perro con el nombre ${nameFormat} ya existe`);
+  throw Error(`El perro con el nombre ${name} ya existe`);
 };
 
 module.exports = createDog;

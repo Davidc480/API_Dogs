@@ -45,14 +45,9 @@ dogs.get("/:id", async (req, res) => {
 dogs.post("/", async (req, res) => {
   try {
     const { name, life_span, temperament, weight, height, image } = req.body;
-    validateDogCreationData(
-      name,
-      temperament,
-      life_span,
-      weight,
-      height,
-      image
-    );
+
+    name, temperament, life_span, weight, height, image;
+
     const dogCreate = await createDog(
       name,
       life_span,

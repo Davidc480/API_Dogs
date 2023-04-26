@@ -1,21 +1,24 @@
-import { Link, useHistory  } from "react-router-dom";
-// import style from "./NavBar.module.css"
+import { Link, useHistory } from "react-router-dom";
+import styles from "./NavBar.module.css";
 
-const NavBar = ()=> {
+const NavBar = () => {
+  const history = useHistory();
 
-    const history = useHistory();
+  const handleClick = () => {
+    history.push("/home");
+    history.go(0);
+  };
 
-    const handleClick = () => {
-      history.push('/home');
-      history.go(0);
-    };
-
-    return (
-       <div >
-        <Link onClick={handleClick}>Home</Link>
-        <Link to="/create">Create dog</Link>
-       </div>
-    )
-}
+  return (
+    <div className={styles.navbar}>
+      <Link onClick={handleClick} className={styles.navbarLink}>
+        Home
+      </Link>
+      <Link to="/create" className={styles.navbarLink}>
+        Create dog
+      </Link>
+    </div>
+  );
+};
 
 export default NavBar;
